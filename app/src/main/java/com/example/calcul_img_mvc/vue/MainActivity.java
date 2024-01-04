@@ -1,8 +1,8 @@
-package com.example.calcul_img_mvc;
+package com.example.calcul_img_mvc.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import com.example.calcul_img_mvc.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,4 +11,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
 }
