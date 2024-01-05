@@ -49,10 +49,10 @@ public class Profil {
         // message de retour
         message = "Normal";
         if (img < min){
-            message = "trop faible";
+            message = "Trop faible";
         } else {
             if (img > max) {
-                message = "trop élevé";
+                message = "Trop élevé";
             }
         }
     }
