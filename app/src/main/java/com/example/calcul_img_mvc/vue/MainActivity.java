@@ -1,5 +1,6 @@
 package com.example.calcul_img_mvc.vue;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    private void init(){
+    private void init() {
         txtPoids = findViewById(R.id.txtPoids);
         txtTaille = findViewById(R.id.txtTaille);
         txtAge = findViewById(R.id.txtAge);
@@ -65,26 +66,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-        private void calculerResult(int poids, int taille, int age, int sexe){
-            // creer profile ...
-        }
+    private void calculerResult(int poids, int taille, int age, int sexe) {
+        this.controle.creerProfil(poids, taille, age, sexe);
+        img = this.controle.getIMG();
+        message = this.controle.getMessage();
+    }
 
 
-        private void afficherResult(){
-            if (message == "Normal") {
-                imgIcon.setImageResource(R.drawable.normal);
-                lbResult.setTextColor(Color.GREEN);
+    private void afficherResult() {
+        if (message == "Normal") {
+            imgIcon.setImageResource(R.drawable.normal);
+            lbResult.setTextColor(Color.GREEN);
+        } else {
+            if (message == "Trop faible") {
+                imgIcon.setImageResource(R.drawable.maigre);
+                lbResult.setTextColor(Color.RED);
+            } else {
+                imgIcon.setImageResource(R.drawable.gros);
+                lbResult.setTextColor(Color.RED);
             }
-            else {
-                if (message == "Trop faible") {
-                    imgIcon.setImageResource(R.drawable.maigre);
-                    lbResult.setTextColor(Color.RED);
-                } else {
-                    imgIcon.setImageResource(R.drawable.gros);
-                    lbResult.setTextColor(Color.RED);
-                }
-            }
-            lbResult.setText(String.format("%.01f",img)+" : IMG "+ message);
         }
+        lbResult.setText(String.format("%.01f", img) + " : IMG " + message);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("IMG", img);
+        outState.putString("MESSAGE", message);
+    }
+
 
 }
